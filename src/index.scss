@@ -9,8 +9,13 @@
 }
 @layer component {
   .page-container {
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
+    max-width: 1280px;
+    @apply mx-auto;
+  }
+  .list-card .swiper-silde {
+    // height: auto;
+  }
+  .banner .swiper {
+    height: 100%;
   }
 }
