@@ -2,8 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap");
-
-* {
-  font-family: "DM Sans", sans-serif;
+@layer base {
+  body {
+    @apply bg-slate-900 font-body p-5;
+  }
+}
+@layer component {
+  .page-container {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
