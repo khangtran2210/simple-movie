@@ -6,6 +6,7 @@ import { Navigation } from "swiper";
 import "swiper/scss";
 import "swiper/css/navigation";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 // API : https://api.themoviedb.org/3/movie/550?api_key=601b1d584d814eecc70ce80f523117ad
 
 const Banner = () => {
@@ -18,7 +19,7 @@ const Banner = () => {
   return (
     <section className="h-[600px] mb-5 banner page-container ">
       <Swiper
-        grabCursor={true}
+        grabCursor={false}
         navigation={true}
         modules={[Navigation]}
         slidesPerView={"auto"}
@@ -37,7 +38,8 @@ const Banner = () => {
 };
 
 function BannerItem({ item }) {
-  const { title, backdrop_path, genre_ids } = item;
+  const navigate = useNavigate();
+  const { title, backdrop_path, genre_ids, id } = item;
   const [genres, setGenres] = useState([]);
   let genresMatch = [];
   const { data } = useSWR(
@@ -62,7 +64,12 @@ function BannerItem({ item }) {
         className="object-cover w-full h-full rounded-lg"
       />
       <div className="absolute w-full text-white content left-5 bottom-5">
-        <h2 className="mb-3 text-4xl font-bold">{title}</h2>
+        <h2
+          className="mb-3 text-4xl font-bold cursor-pointer"
+          onClick={() => navigate(`/movies/${id}`)}
+        >
+          {title}
+        </h2>
         <div className="flex items-center mb-8 gap-x-3">
           {genresMatch.length > 0 &&
             genresMatch.map((item) => (
@@ -71,7 +78,10 @@ function BannerItem({ item }) {
               </span>
             ))}
         </div>
-        <button className="px-6 py-3 mb-3 font-bold rounded-lg bg-primary">
+        <button
+          className="px-6 py-3 mb-3 font-bold rounded-lg bg-primary"
+          onClick={() => navigate(`/movies/${id}`)}
+        >
           Watch Now
         </button>
       </div>

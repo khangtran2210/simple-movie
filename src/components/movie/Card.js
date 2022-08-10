@@ -1,7 +1,8 @@
 import React from "react";
-
+import { useNavigate } from "react-router-dom";
 const Card = ({ item }) => {
-  const { title, poster_path, release_date, vote_average } = item;
+  const navigate = useNavigate();
+  const { id, title, poster_path, release_date, vote_average } = item;
   return (
     <div className="flex flex-col h-[650px] p-3 rounded-lg select-none card-wrapper bg-slate-600">
       <div className="relative flex justify-center img-wrapper">
@@ -12,7 +13,12 @@ const Card = ({ item }) => {
         />
       </div>
       <div className="flex flex-col flex-1">
-        <h3 className="mb-2 font-bold cursor-pointer title">{title}</h3>
+        <h3
+          className="mb-2 font-bold cursor-pointer title"
+          onClick={() => navigate(`/movies/${id}`)}
+        >
+          {title}
+        </h3>
         <div className="flex justify-between mb-5 opacity-50">
           <span className="text-xs">
             {new Date(release_date).getFullYear()}
@@ -37,7 +43,10 @@ const Card = ({ item }) => {
         </div>
       </div>
       <div className="text-center">
-        <button className="w-full py-3 mt-auto font-bold rounded-lg bg-primary">
+        <button
+          className="w-full py-3 mt-auto font-bold rounded-lg bg-primary"
+          onClick={() => navigate(`/movies/${id}`)}
+        >
           Watch now
         </button>
       </div>
