@@ -100,11 +100,11 @@ const SignupForm = () => {
         </div>
         <div className="w-full h-[1px] bg-primary"></div>
         {/*--------------------------- Button ---------------------------------*/}
-        <div className="flex items-center justify-around mt-5">
+        <div className="flex items-center mt-5 justify-evenly">
           {/* Reset Button */}
           <button
             type="button"
-            className="w-1/3 p-2 text-white bg-secondary rounded-xl"
+            className="w-1/3 p-2 text-white bg-secondary rounded-xl hover:opacity-80"
             onClick={(e) => {
               e.preventDefault();
               reset({
@@ -120,7 +120,7 @@ const SignupForm = () => {
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-1/3 p-2 text-white bg-primary rounded-xl"
+            className="w-1/2 p-2 text-white bg-primary rounded-xl hover:opacity-80"
           >
             <span>Submit</span>
           </button>

@@ -27,7 +27,7 @@ const MainModal = ({ children }) => {
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke="currentColor"
-          className="absolute top-0 right-0 w-8 h-8 bg-[#272a37] rounded-full cursor-pointer translate-x-1/4 -translate-y-1/4 text-primary"
+          className="absolute top-0 right-0 w-8 h-8 bg-[#272a37] rounded-full cursor-pointer translate-x-1/4 -translate-y-1/4 text-primary hover:opacity-80"
           onClick={() => {
             dispatch(handleToggleModal(false));
             dispatch(handleToggleLogin(false));

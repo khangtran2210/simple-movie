@@ -12,19 +12,23 @@ const Header = () => {
     <header className="relative flex items-center justify-center mb-10 text-lg font-bold text-white header gap-x-5">
       <NavLink
         to={"/"}
-        className={({ isActive }) => (isActive ? "text-primary" : "")}
+        className={({ isActive }) =>
+          isActive ? "text-primary hover:opacity-80" : "hover:opacity-80"
+        }
       >
         Home
       </NavLink>
       <NavLink
         to={"/movies"}
-        className={({ isActive }) => (isActive ? "text-primary" : "")}
+        className={({ isActive }) =>
+          isActive ? "text-primary hover:opacity-80" : "hover:opacity-80"
+        }
       >
         Movies
       </NavLink>
       <div className="absolute top-0 flex justify-between w-48 right-24">
         <button
-          className="px-4 py-2 text-white bg-secondary rounded-xl whitespace-nowrap"
+          className="px-4 py-2 text-white bg-secondary rounded-xl whitespace-nowrap hover:opacity-80"
           onClick={() => {
             dispatch(handleToggleModal(true));
             dispatch(handleToggleSignup(true));
@@ -33,7 +37,7 @@ const Header = () => {
           <span>Sign Up</span>
         </button>
         <button
-          className="px-4 py-2 text-white bg-primary rounded-xl"
+          className="px-4 py-2 text-white bg-primary rounded-xl hover:opacity-80"
           onClick={() => {
             dispatch(handleToggleModal(true));
             dispatch(handleToggleLogin(true));

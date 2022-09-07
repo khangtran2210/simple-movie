@@ -66,7 +66,7 @@ const LoginForm = () => {
         {/* Submit Button */}
         <button
           type="submit"
-          className="w-full p-2 text-white bg-primary rounded-xl"
+          className="w-full p-2 text-white bg-primary rounded-xl hover:opacity-80"
         >
           <span>Login</span>
         </button>

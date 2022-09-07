@@ -44,7 +44,7 @@ const Card = ({ item }) => {
       </div>
       <div className="text-center">
         <button
-          className="w-full py-3 mt-auto font-bold rounded-lg bg-primary"
+          className="w-full py-3 mt-auto font-bold rounded-lg bg-primary hover:opacity-80"
           onClick={() => navigate(`/movies/${id}`)}
         >
           Watch now

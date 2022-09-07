@@ -5,7 +5,7 @@ import "swiper/scss";
 import "swiper/css/navigation";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { getMoviesByType, getUpcomingMovies } from "redux/slice/movieAPISlice";
+import { getUpcomingMovies } from "redux/slice/movieAPISlice";
 import { getGenres } from "redux/slice/genreAPISlice";
 // API : https://api.themoviedb.org/3/movie/550?api_key=601b1d584d814eecc70ce80f523117ad
 
@@ -84,7 +84,7 @@ function BannerItem({ item }) {
             ))}
         </div>
         <button
-          className="px-6 py-3 mb-3 font-bold rounded-lg bg-primary"
+          className="px-6 py-3 mb-3 font-bold rounded-lg bg-primary hover:opacity-80"
           onClick={() => navigate(`/movies/${id}`)}
         >
           Watch Now
