@@ -1,20 +1,23 @@
 import React, { useEffect } from "react";
-import useSWR from "swr";
-import { fetcher } from "../../config/config";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
 import "swiper/scss";
 import "swiper/css/navigation";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { getMoviesByType, getUpcomingMovies } from "redux/slice/movieAPISlice";
+import { getGenres } from "redux/slice/genreAPISlice";
 // API : https://api.themoviedb.org/3/movie/550?api_key=601b1d584d814eecc70ce80f523117ad
 
 const Banner = () => {
-  const { data } = useSWR(
-    "https://api.themoviedb.org/3/movie/upcoming?api_key=601b1d584d814eecc70ce80f523117ad",
-    fetcher
-  );
-  const movies = data?.results || [];
+  const data = useSelector((state) => state.movieAPI.upcoming_movies);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getGenres());
+    dispatch(getUpcomingMovies());
+  }, [dispatch]);
+  const movies = data || [];
 
   return (
     <section className="h-[600px] mb-5 banner page-container ">
@@ -27,7 +30,7 @@ const Banner = () => {
         {movies.length > 0 &&
           movies.map((item) => {
             return (
-              <SwiperSlide>
+              <SwiperSlide key={item.id}>
                 <BannerItem item={item}></BannerItem>
               </SwiperSlide>
             );
@@ -40,21 +43,20 @@ const Banner = () => {
 function BannerItem({ item }) {
   const navigate = useNavigate();
   const { title, backdrop_path, genre_ids, id } = item;
-  const [genres, setGenres] = useState([]);
+  // Call genres from Global Store
+  const genresArray = useSelector((state) => state.genreAPI.genres);
+
+  // Create dispatch
+
   let genresMatch = [];
-  const { data } = useSWR(
-    "https://api.themoviedb.org/3/genre/movie/list?api_key=601b1d584d814eecc70ce80f523117ad&language=en-US",
-    fetcher
-  );
-  useEffect(() => {
-    if (data) {
-      setGenres(data.genres);
-    }
-  }, [data]);
-  //   Duyệt lấy genres object khớp với genre_ids
-  genresMatch = genres.filter((item) => {
-    return genre_ids.includes(item.id);
-  });
+  const genresData = genresArray || [];
+  //   Loop to get genres object matches genre_ids
+  if (genresData.length > 0) {
+    genresMatch = genresData.filter((item) => {
+      return genre_ids.includes(item.id);
+    });
+  }
+
   return (
     <div className="relative w-full h-full rounded-lg">
       <div className="overlay absolute inset-0 bg-gradient-to-b from-[rgba(0,0,0,0.2)] to-[rgba(0,0,0,0.7)] rounded-lg"></div>
@@ -73,7 +75,10 @@ function BannerItem({ item }) {
         <div className="flex items-center mb-8 gap-x-3">
           {genresMatch.length > 0 &&
             genresMatch.map((item) => (
-              <span className="px-4 py-1 border border-white rounded-md cursor-pointer">
+              <span
+                key={item.id}
+                className="px-4 py-1 border border-white rounded-md cursor-pointer"
+              >
                 {item.name}
               </span>
             ))}

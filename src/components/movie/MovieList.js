@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import useSWR from "swr";
+import { useSelector, useDispatch } from "react-redux";
 import Card from "./Card";
 
 // API : https://api.themoviedb.org/3/movie/550?api_key=601b1d584d814eecc70ce80f523117ad
@@ -7,19 +7,35 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
 import "swiper/scss";
 import "swiper/css/navigation";
-import { fetcher } from "../../config/config";
-import { useState } from "react";
-const MovieList = ({ type }) => {
-  const [movies, setMovies] = useState([]);
-  let endpoint = `https://api.themoviedb.org/3/movie/${type}?api_key=601b1d584d814eecc70ce80f523117ad`;
+import {
+  getNowMovies,
+  getPopularMovies,
+  getTopMovies,
+} from "redux/slice/movieAPISlice";
 
-  const { data } = useSWR(endpoint, fetcher);
+const MovieList = ({ type }) => {
+  const data = useSelector((state) => state.movieAPI);
+  // console.log("🚀 ~ MovieList ~ data", data);
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    if (data) {
-      setMovies(data.results);
-      console.log(data.results);
+    switch (type) {
+      case "now_playing":
+        dispatch(getNowMovies());
+        break;
+      case "popular":
+        dispatch(getPopularMovies());
+        break;
+      case "top_rated":
+        dispatch(getTopMovies());
+        break;
+      default:
+        break;
     }
-  }, [data]);
+  }, [dispatch, type]);
+  const movies = data[`${type}_movies`] || [];
+  console.log("🚀 ~ MovieList ~ movies", data[`${type}_movies`]);
+
   return (
     <div className="list-card">
       <Swiper

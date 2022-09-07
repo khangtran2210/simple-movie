@@ -6,6 +6,8 @@ import HomePage from "./pages/HomePage";
 import MovieDetailPage from "./pages/MovieDetailPage";
 import MoviePage from "./pages/MoviePage";
 
+// import Test from "components/layout/Test";
+
 function App() {
   return (
     <Fragment>
@@ -27,6 +29,8 @@ function App() {
           ></Route>
         </Route>
       </Routes>
+      {/* <Test></Test> */}
+      {/* <MoviePage></MoviePage> */}
     </Fragment>
   );
 }

@@ -1,11 +1,16 @@
-import { fetcher } from "../config/config";
-import useSWR from "swr";
-import Card from "../components/movie/Card";
-const MoviePage = () => {
-  let endpoint = `https://api.themoviedb.org/3/movie/popular?api_key=601b1d584d814eecc70ce80f523117ad`;
+import Card from "components/movie/Card";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getUpcomingMovies } from "redux/slice/movieAPISlice";
 
-  const { data } = useSWR(endpoint, fetcher);
-  const movies = data?.results || [];
+const MoviePage = () => {
+  const data = useSelector((state) => state.movieAPI.upcoming_movies);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getUpcomingMovies());
+  }, []);
+  const movies = data || [];
   return (
     <div className="p-10 text-white page-container">
       <div className="flex justify-center mb-10">
