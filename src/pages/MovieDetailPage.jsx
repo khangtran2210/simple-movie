@@ -21,7 +21,7 @@ const MovieDetailPage = () => {
     dispatch(getCastsByMovie(movieId));
     dispatch(getVideosByMovie(movieId));
     dispatch(getSimilarByMovie(movieId));
-  }, []);
+  }, [dispatch, movieId]);
 
   const movieDetail = data.movieDetail || [];
   console.log("🚀 ~ MovieDetailPage ~ movieDetail", movieDetail);

@@ -9,7 +9,7 @@ const MoviePage = () => {
 
   useEffect(() => {
     dispatch(getUpcomingMovies());
-  }, []);
+  }, [dispatch]);
   const movies = data || [];
   return (
     <div className="p-10 text-white page-container">

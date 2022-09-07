@@ -15,7 +15,7 @@ import {
 
 const MovieList = ({ type }) => {
   const data = useSelector((state) => state.movieAPI);
-  // console.log("🚀 ~ MovieList ~ data", data);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -34,7 +34,7 @@ const MovieList = ({ type }) => {
     }
   }, [dispatch, type]);
   const movies = data[`${type}_movies`] || [];
-  console.log("🚀 ~ MovieList ~ movies", data[`${type}_movies`]);
+  // console.log("🚀 ~ MovieList ~ movies", data[`${type}_movies`]);
 
   return (
     <div className="list-card">

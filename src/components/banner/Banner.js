@@ -20,7 +20,7 @@ const Banner = () => {
   const movies = data || [];
 
   return (
-    <section className="h-[600px] mb-5 banner page-container ">
+    <section className="h-[40rem] mb-5 banner page-container overflow-hidden rounded-lg">
       <Swiper
         grabCursor={false}
         navigation={true}
@@ -58,7 +58,7 @@ function BannerItem({ item }) {
   }
 
   return (
-    <div className="relative w-full h-full rounded-lg">
+    <div className="relative w-full h-full ">
       <div className="overlay absolute inset-0 bg-gradient-to-b from-[rgba(0,0,0,0.2)] to-[rgba(0,0,0,0.7)] rounded-lg"></div>
       <img
         src={`https://image.tmdb.org/t/p/original/${backdrop_path}`}
