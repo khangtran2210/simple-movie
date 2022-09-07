@@ -5,8 +5,6 @@ import { Fragment } from "react";
 import { useSelector } from "react-redux";
 import AppRoute from "routes/AppRoute";
 
-import Main from "./components/layout/Main";
-
 function App() {
   const modal = useSelector((state) => state.modal);
   return (
