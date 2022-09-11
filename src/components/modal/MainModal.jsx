@@ -1,22 +1,15 @@
+import useClickOutSide from "hooks/useClickOutSide";
 import React from "react";
 import ReactDOM from "react-dom";
-import { useDispatch } from "react-redux";
-import {
-  handleToggleLogin,
-  handleToggleModal,
-  handleToggleSignup,
-} from "redux/slice/modalSlice";
 
 const MainModal = ({ children }) => {
-  const dispatch = useDispatch();
+  const turnOffModal = useClickOutSide();
   return ReactDOM.createPortal(
     <div className="fixed inset-0 z-10 modal">
       <div
         className="absolute inset-0 bg-black bg-opacity-80 layer"
         onClick={() => {
-          dispatch(handleToggleModal(false));
-          dispatch(handleToggleLogin(false));
-          dispatch(handleToggleSignup(false));
+          turnOffModal();
         }}
       ></div>
       <div className="absolute w-[25rem] -translate-x-1/2 -translate-y-1/2 bg-[#272a37] left-1/2 top-1/2 content rounded-xl ">
@@ -29,9 +22,7 @@ const MainModal = ({ children }) => {
           stroke="currentColor"
           className="absolute top-0 right-0 w-8 h-8 bg-[#272a37] rounded-full cursor-pointer translate-x-1/4 -translate-y-1/4 text-primary hover:opacity-80"
           onClick={() => {
-            dispatch(handleToggleModal(false));
-            dispatch(handleToggleLogin(false));
-            dispatch(handleToggleSignup(false));
+            turnOffModal();
           }}
         >
           <path
