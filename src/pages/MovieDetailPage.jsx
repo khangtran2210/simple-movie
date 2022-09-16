@@ -136,7 +136,10 @@ function SimilarMovie({ data }) {
             <img
               src={`https://image.tmdb.org/t/p/original${item.poster_path}`}
               alt=""
-              className="h-[350px] w-full rounded-lg mb-5"
+              className="h-[350px] w-full rounded-lg mb-5 cursor-pointer hover:opacity-80"
+              onClick={() => {
+                navigate(`/movies/${item.id}`);
+              }}
             />
             <div
               className="text-xl font-medium text-center cursor-pointer name hover:opacity-80"

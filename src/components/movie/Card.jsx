@@ -9,7 +9,8 @@ const Card = ({ item }) => {
         <img
           src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
           alt=""
-          className="object-cover w-[300px] h-[450px] mb-3 rounded-lg"
+          className="object-cover w-[300px] h-[450px] mb-3 rounded-lg cursor-pointer"
+          onClick={() => navigate(`/movies/${id}`)}
         />
       </div>
       <div className="flex flex-col flex-1">
