@@ -4,25 +4,21 @@ const modalSlice = createSlice({
   name: "modal",
   initialState: {
     isOpen: false,
-    isLoginOpen: false,
-    isSignupOpen: false,
+    typeModal: null,
   },
   reducers: {
-    handleToggleModal: (state, action) => ({
+    handleCloseModal: (state) => ({
       ...state,
-      isOpen: action.payload,
+      isOpen: false,
+      typeModal: null,
     }),
-    handleToggleLogin: (state, action) => ({
+    handleOpenModal: (state, action) => ({
       ...state,
-      isLoginOpen: action.payload,
-    }),
-    handleToggleSignup: (state, action) => ({
-      ...state,
-      isSignupOpen: action.payload,
+      isOpen: true,
+      typeModal: action.payload,
     }),
   },
 });
 
-export const { handleToggleModal, handleToggleLogin, handleToggleSignup } =
-  modalSlice.actions;
+export const { handleCloseModal, handleOpenModal } = modalSlice.actions;
 export default modalSlice.reducer;

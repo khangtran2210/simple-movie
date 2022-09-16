@@ -1,12 +1,9 @@
-import LoginForm from "components/form/LoginFom";
-import SignupForm from "components/form/SignupForm";
-import MainModal from "components/modal/MainModal";
+import ModalManager from "components/modal/ModalManager";
 import { Fragment } from "react";
-import { useSelector } from "react-redux";
+
 import AppRoute from "routes/AppRoute";
 
 function App() {
-  const modal = useSelector((state) => state.modal);
   return (
     <Fragment>
       <AppRoute></AppRoute>
@@ -17,12 +14,7 @@ function App() {
       <MainModal>
         <LoginForm></LoginForm>
       </MainModal> */}
-      {modal.isOpen && (
-        <MainModal>
-          {modal.isLoginOpen && <LoginForm></LoginForm>}
-          {modal.isSignupOpen && <SignupForm></SignupForm>}
-        </MainModal>
-      )}
+      <ModalManager></ModalManager>
     </Fragment>
   );
 }

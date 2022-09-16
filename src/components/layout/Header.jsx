@@ -1,11 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
-import {
-  handleToggleLogin,
-  handleToggleModal,
-  handleToggleSignup,
-} from "redux/slice/modalSlice";
+import { handleOpenModal } from "redux/slice/modalSlice";
 const Header = () => {
   const dispatch = useDispatch();
   return (
@@ -30,8 +26,7 @@ const Header = () => {
         <button
           className="px-4 py-2 text-white bg-secondary rounded-xl whitespace-nowrap hover:opacity-80"
           onClick={() => {
-            dispatch(handleToggleModal(true));
-            dispatch(handleToggleSignup(true));
+            dispatch(handleOpenModal("SignupForm"));
           }}
         >
           <span>Sign Up</span>
@@ -39,8 +34,7 @@ const Header = () => {
         <button
           className="px-4 py-2 text-white bg-primary rounded-xl hover:opacity-80"
           onClick={() => {
-            dispatch(handleToggleModal(true));
-            dispatch(handleToggleLogin(true));
+            dispatch(handleOpenModal("LoginForm"));
           }}
         >
           <span>Login</span>
