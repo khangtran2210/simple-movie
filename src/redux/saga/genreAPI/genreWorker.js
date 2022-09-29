@@ -7,7 +7,7 @@ export default function* getGenreWorker() {
   try {
     const params = { api_key: API_KEY };
     const data = yield call(genreApi.getGenres, params);
-    console.log("🚀 ~ *genreWorker ~ data", data);
+    // console.log("🚀 ~ *genreWorker ~ data", data);
     yield put(setGenres(data?.genres));
   } catch (error) {
     throw error;

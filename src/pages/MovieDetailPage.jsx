@@ -24,10 +24,10 @@ const MovieDetailPage = () => {
   }, [dispatch, movieId]);
 
   const movieDetail = data.movieDetail || [];
-  console.log("🚀 ~ MovieDetailPage ~ movieDetail", movieDetail);
+  // console.log("🚀 ~ MovieDetailPage ~ movieDetail", movieDetail);
   const { title, backdrop_path, poster_path, genres, overview } = movieDetail;
-  console.log("🚀 ~ MovieDetailPage ~ genres", genres);
-
+  // console.log("🚀 ~ MovieDetailPage ~ genres", genres);
+  document.title = title;
   return (
     <div>
       <div className="w-full h-[600px] relative ">
@@ -113,11 +113,10 @@ function MovieVideo({ data }) {
               height="504"
               src={`https://www.youtube.com/embed/${item.key}`}
               title="YouTube video player"
-              frameborder="0"
+              allowFullScreen="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               className="mb-10"
               key={Math.random()}
-              allowfullscreen
             ></iframe>
           ))}
     </div>

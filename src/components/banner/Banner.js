@@ -16,6 +16,7 @@ const Banner = () => {
   useEffect(() => {
     dispatch(getGenres());
     dispatch(getUpcomingMovies());
+    document.title = "Home Page";
   }, [dispatch]);
   const movies = data || [];
 

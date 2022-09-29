@@ -9,6 +9,7 @@ const MoviePage = () => {
 
   useEffect(() => {
     dispatch(getUpcomingMovies());
+    document.title = "Movies";
   }, [dispatch]);
   const movies = data || [];
   return (
